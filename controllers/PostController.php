@@ -27,8 +27,13 @@ class PostController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'create', 'update', 'delete'],
+                'only' => ['create', 'update', 'view', 'delete'],
                 'rules' => [
+                    [
+                        'actions' => ['create', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                     [
                         'actions' => ['update', 'delete'],
                         'allow' => true,
@@ -37,11 +42,7 @@ class PostController extends Controller
                             return $this->isAuthor();
                         },
                     ],
-                    [
-                        'actions' => ['index', 'create', 'view'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+
                 ],
             ],
         ];

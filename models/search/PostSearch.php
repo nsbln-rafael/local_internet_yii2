@@ -6,25 +6,25 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Post;
 
-class PostSearch extends Post
+class PostSearch extends Model
 {
+    public $title;
+
+    public function formName()
+    {
+        return '';
+    }
+
     /**
      * @return array
      */
     public function rules(): array
     {
         return [
-            ['description', 'safe'],
+            ['title', 'safe'],
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function scenarios(): array
-    {
-        return Model::scenarios();
-    }
 
     /**
      * @param array $params
@@ -46,7 +46,7 @@ class PostSearch extends Post
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['LIKE', 'title', $this->title]);
 
         return $dataProvider;
     }

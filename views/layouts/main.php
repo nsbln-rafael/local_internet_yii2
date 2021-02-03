@@ -43,14 +43,28 @@ AppAsset::register($this);
             ['label' => 'Регистрация', 'url' => ['/site/signup']]
         ]
         :
-        ['<li>'
+        [
+            '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Выйти (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
-            . '</li>'];
+            . '</li>'
+        ];
+    $items[] =
+        '<li>'
+        . Html::beginForm(['/post/index'], 'get')
+        . Html::textInput('title', )
+        . Html::label('', 'title')
+        . Html::submitButton(
+            'Искать',
+            ['class' => 'btn btn-link logout']
+        )
+        . Html::endForm()
+        . '</li>'
+    ;
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,
