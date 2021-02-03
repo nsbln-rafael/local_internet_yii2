@@ -2,14 +2,14 @@
 
 /* @var View       $this */
 /* @var ActiveForm $form */
-/* @var LoginForm  $model */
+/* @var SignupForm $model */
 
-use app\models\LoginForm;
+use app\models\SignupForm;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\web\View;
 
-$this->title = 'Войти';
+$this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -26,7 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
         <?= $form->field($model, 'email')->textInput(['type' => 'email']) ?>
+
         <?= $form->field($model, 'password')->passwordInput() ?>
 
         <div class="form-group">
