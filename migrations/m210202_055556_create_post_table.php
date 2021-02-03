@@ -13,7 +13,7 @@ class m210202_055556_create_post_table extends Migration
             'title'             => $this->string()->notNull(),
             'description'       => $this->text()->notNull(),
             'description_short' => $this->string()->notNull(),
-            'image_path'        => $this->string()->notNull(),
+            'image'             => $this->string()->null(),
         ]);
     }
 
