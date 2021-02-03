@@ -9,6 +9,7 @@ use app\services\PostManagerInterface;
 use Yii;
 use app\models\Post;
 use app\models\search\PostSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -19,9 +20,28 @@ class PostController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['index', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return $this->isAuthor();
+                        },
+                    ],
+                    [
+                        'actions' => ['index', 'create', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -63,6 +83,7 @@ class PostController extends Controller
         $model->scenario = Post::SCENARIO_CREATE;
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->id;
             $manager->save($model);
 
             return $this->redirect(['view', 'id' => $model->id]);
@@ -121,5 +142,12 @@ class PostController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    private function isAuthor() {
+        $app  = Yii::$app;
+        $post = $this->findModel($app->request->get('id'));
+
+        return $post->user->id === $app->user->id;
     }
 }

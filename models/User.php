@@ -51,6 +51,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $security->validatePassword($password, $this->password);
     }
 
+    public function getPosts()
+    {
+        return $this->hasMany(Post::class, ['user_id' => 'id']);
+    }
+
     public function getAuthKey() {}
 
     public function validateAuthKey($authKey) {}

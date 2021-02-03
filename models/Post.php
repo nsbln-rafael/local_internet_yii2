@@ -12,6 +12,8 @@ use yii\helpers\ArrayHelper;
  * @property string $description
  * @property string $description_short
  * @property string $image
+ * @property int    $user_id
+ *
  */
 class Post extends ActiveRecord
 {
@@ -34,6 +36,9 @@ class Post extends ActiveRecord
     public function rules(): array
     {
         return [
+            ['user_id', 'required'],
+            ['user_id', 'exist', 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+
             ['title', 'required'],
             ['title', 'string', 'max' => 255],
 
@@ -56,7 +61,13 @@ class Post extends ActiveRecord
             'description'       => 'Описание',
             'description_short' => 'Короткое описание',
             'image'             => 'Изображение',
+            'user_id'           => 'Автор',
         ];
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**

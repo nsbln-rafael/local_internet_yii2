@@ -43,6 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'    => 'raw',
                 'value' => fn($model) => Html::a($model->description_short, ['post/view', 'id' => $model->id])
             ],
+            [
+                'attribute' => 'user_id',
+                'value' => fn($model) => $model->user->username
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -41,6 +41,10 @@ YiiAsset::register($this);
             'title',
             'description_short',
             'description:ntext',
+            [
+                'attribute' => 'user_id',
+                'value'     => fn($model) => $model->user->username
+            ],
         ],
     ]) ?>
 
