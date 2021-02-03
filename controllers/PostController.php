@@ -5,6 +5,7 @@
 
 namespace app\controllers;
 
+use app\services\PostManagerInterface;
 use Yii;
 use app\models\Post;
 use app\models\search\PostSearch;
@@ -53,13 +54,17 @@ class PostController extends Controller
     }
 
     /**
+     * @param PostManagerInterface $manager
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate(PostManagerInterface $manager)
     {
-        $model = new Post();
+        $model           = new Post();
+        $model->scenario = Post::SCENARIO_CREATE;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $manager->save($model);
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -69,15 +74,20 @@ class PostController extends Controller
     }
 
     /**
-     * @param integer $id
+     * @param integer              $id
+     * @param PostManagerInterface $manager
      *
      * @return mixed
      */
-    public function actionUpdate(int $id)
+    public function actionUpdate(int $id, PostManagerInterface $manager)
     {
-        $model = $this->findModel($id);
+        $model           = $this->findModel($id);
+        $model->scenario = Post::SCENARIO_UPDATE;
+        $oldImage        = $model->image;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $manager->update($model, $oldImage);
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -91,9 +101,10 @@ class PostController extends Controller
      *
      * @return mixed
      */
-    public function actionDelete(int $id)
+    public function actionDelete(int $id, PostManagerInterface $manager)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $manager->delete($model);
 
         return $this->redirect(['index']);
     }

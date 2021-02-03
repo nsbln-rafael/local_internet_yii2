@@ -27,14 +27,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'title',
-            'description:ntext',
-            'description_short',
-            'image_path',
-
+            [
+                'attribute' => 'image',
+                'format'    => ['image', ['width' => '100', 'height' => '100']],
+                'value'     => fn($model) => "../uploads/" . $model->image,
+            ],
+            [
+                'attribute' => 'title',
+                'format'    => 'raw',
+                'value' => fn($model) => Html::a($model->title, ['post/view', 'id' => $model->id])
+            ],
+            [
+                'attribute' => 'description_short',
+                'format'    => 'raw',
+                'value' => fn($model) => Html::a($model->description_short, ['post/view', 'id' => $model->id])
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

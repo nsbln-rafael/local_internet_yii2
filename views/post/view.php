@@ -33,10 +33,14 @@ YiiAsset::register($this);
         'model' => $model,
         'attributes' => [
             'id',
+            [
+                'attribute' => 'image',
+                'format'    => ['image', ['width' => '200', 'height' => '200']],
+                'value'     => fn($model) => "../uploads/" . $model->image,
+            ],
             'title',
-            'description:ntext',
             'description_short',
-            'image_path',
+            'description:ntext',
         ],
     ]) ?>
 
