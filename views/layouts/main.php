@@ -62,7 +62,7 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'homeLink' => [
                 'label' => 'Блог',
-                'url'   => Url::to('/t'),
+                'url'   => Url::to('/'),
             ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
