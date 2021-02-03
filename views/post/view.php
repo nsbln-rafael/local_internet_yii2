@@ -49,3 +49,13 @@ YiiAsset::register($this);
     ]) ?>
 
 </div>
+
+<div class="ya-share2"
+     data-curtain data-size="l"
+     data-shape="round"
+     data-services="messenger,vkontakte,facebook,odnoklassniki,telegram,whatsapp">
+</div>
+
+<?php
+
+$this->registerJsFile("https://yastatic.net/share2/share.js");
