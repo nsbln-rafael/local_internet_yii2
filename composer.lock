@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d01b08e7e1bd973447c50d5ce01a2415",
+    "content-hash": "49207b0eee2e5820a710235c8e393c09",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1263,6 +1263,66 @@
             "time": "2020-12-23T17:16:36+00:00"
         },
         {
+            "name": "yiisoft/yii2-sphinx",
+            "version": "2.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-sphinx.git",
+                "reference": "db0985ae19f142ba06b109f46fbe3582937d59af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-sphinx/zipball/db0985ae19f142ba06b109f46fbe3582937d59af",
+                "reference": "db0985ae19f142ba06b109f46fbe3582937d59af",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "ext-pdo_mysql": "*",
+                "yiisoft/yii2": "~2.0.13"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.27|~5.7.21|^6.2"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\sphinx\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "Sphinx full text search engine extension for the Yii framework",
+            "keywords": [
+                "active-record",
+                "fulltext",
+                "search",
+                "sphinx",
+                "yii2"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/yii2-sphinx/issues",
+                "source": "https://github.com/yiisoft/yii2-sphinx",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "time": "2020-02-22T10:18:25+00:00"
+        },
+        {
             "name": "yiisoft/yii2-swiftmailer",
             "version": "2.1.2",
             "source": {
@@ -1323,23 +1383,24 @@
     "packages-dev": [
         {
             "name": "behat/gherkin",
-            "version": "v4.7.1",
+            "version": "v4.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "987bcdc3d29ba433e6bd4b1db4ae59737ba3dacd"
+                "reference": "d1ff9aa23bb280e8aee9118d42eec386d6f851f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/987bcdc3d29ba433e6bd4b1db4ae59737ba3dacd",
-                "reference": "987bcdc3d29ba433e6bd4b1db4ae59737ba3dacd",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/d1ff9aa23bb280e8aee9118d42eec386d6f851f7",
+                "reference": "d1ff9aa23bb280e8aee9118d42eec386d6f851f7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.7|~6|~7",
+                "cucumber/cucumber": "dev-gherkin-16.0.0",
+                "phpunit/phpunit": "^5.7.1|~6|~7",
                 "symfony/phpunit-bridge": "~2.7|~3|~4",
                 "symfony/yaml": "~2.3|~3|~4"
             },
@@ -1380,9 +1441,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Behat/Gherkin/issues",
-                "source": "https://github.com/Behat/Gherkin/tree/v4.7.1"
+                "source": "https://github.com/Behat/Gherkin/tree/v4.7.2"
             },
-            "time": "2021-01-26T16:24:32+00:00"
+            "time": "2021-02-03T16:10:01+00:00"
         },
         {
             "name": "codeception/codeception",
