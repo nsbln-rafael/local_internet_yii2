@@ -15,6 +15,8 @@ class m210202_055556_create_post_table extends Migration
             'description_short' => $this->string()->notNull(),
             'image'             => $this->string()->null(),
         ]);
+
+        $this->execute("ALTER TABLE post ADD FULLTEXT INDEX idx_description_post (description)");
     }
 
     public function safeDown()
