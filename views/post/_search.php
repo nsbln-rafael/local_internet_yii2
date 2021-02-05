@@ -1,13 +1,13 @@
 <?php
 
-use app\models\search\PostSearch;
+use app\models\search\PostListSearch;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 
-/* @var View       $this */
-/* @var PostSearch $model */
-/* @var ActiveForm $form */
+/* @var View           $this */
+/* @var PostListSearch $model */
+/* @var ActiveForm     $form */
 ?>
 
 <div class="post-search">
@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'title') ?>
+    <?= $form->field($model, 'description') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Искать', ['class' => 'btn btn-primary']) ?>

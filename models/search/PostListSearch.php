@@ -2,17 +2,24 @@
 
 namespace app\models\search;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Post;
+use yii\helpers\ArrayHelper;
 
-class PostSearch extends Model
+class PostListSearch extends Model
 {
-    public $title;
+    public $description;
 
     public function formName()
     {
         return '';
+    }
+
+    public function attributeLabels()
+    {
+        return ['description' => 'Поиск по описанию'];
     }
 
     /**
@@ -21,10 +28,9 @@ class PostSearch extends Model
     public function rules(): array
     {
         return [
-            ['title', 'safe'],
+            ['description', 'safe'],
         ];
     }
-
 
     /**
      * @param array $params
@@ -46,7 +52,17 @@ class PostSearch extends Model
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['LIKE', 'title', $this->title]);
+        if (!empty($this->description)) {
+            $sql = "SELECT * FROM idx_post_description WHERE MATCH(:description)";
+
+            $ids = Yii::$app->sphinx->createCommand($sql)
+                ->bindParam(":description", $this->description)
+                ->queryAll();
+
+            $ids = ArrayHelper::map($ids, 'id', 'id');
+
+            $query->andFilterWhere(['id' => $ids]);
+        }
 
         return $dataProvider;
     }

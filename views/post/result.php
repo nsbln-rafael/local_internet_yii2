@@ -1,6 +1,5 @@
 <?php
 
-use app\models\search\PostListSearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -8,7 +7,6 @@ use yii\web\View;
 
 /* @var View               $this */
 /* @var ActiveDataProvider $dataProvider */
-/* @var PostListSearch     $searchModel */
 
 $this->title = 'Посты';
 $this->params['breadcrumbs'][] = $this->title;
@@ -16,12 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="post-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Создать пост', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

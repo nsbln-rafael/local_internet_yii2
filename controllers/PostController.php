@@ -8,7 +8,8 @@ namespace app\controllers;
 use app\services\PostManagerInterface;
 use Yii;
 use app\models\Post;
-use app\models\search\PostSearch;
+use app\models\search\PostHeaderSearch;
+use app\models\search\PostListSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -27,10 +28,10 @@ class PostController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['create', 'update', 'view', 'delete'],
+                'only' => ['create', 'update', 'delete'],
                 'rules' => [
                     [
-                        'actions' => ['create', 'view'],
+                        'actions' => ['create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -53,11 +54,24 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
+        $searchModel = new PostListSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel'  => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function actionResult()
+    {
+        $searchModel = new PostHeaderSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('result', [
             'dataProvider' => $dataProvider,
         ]);
     }

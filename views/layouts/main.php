@@ -55,9 +55,9 @@ AppAsset::register($this);
         ];
     $items[] =
         '<li>'
-        . Html::beginForm(['/post/index'], 'get')
-        . Html::textInput('title', )
-        . Html::label('', 'title')
+        . Html::beginForm(['/post/result'], 'get')
+        . Html::textInput('description', )
+        . Html::label('', 'description')
         . Html::submitButton(
             'Искать',
             ['class' => 'btn btn-link logout']
